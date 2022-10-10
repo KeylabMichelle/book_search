@@ -50,7 +50,7 @@ class _BookDetailState extends State<BookDetail> {
               IconButton(
                   onPressed: () {
                     Share.share(
-                        'Libro: <${widget.title}> con un número de páginas de ${widget.pages}',
+                        'Libro: <${widget.title}> con un número de páginas de ${widget.pages == 'null' ? 'Unknown' : widget.pages}',
                         subject: 'Detalles de libro');
                   },
                   icon: Icon(Icons.share))
