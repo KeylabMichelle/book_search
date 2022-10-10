@@ -8,8 +8,15 @@ class BookProvider with ChangeNotifier {
 
   List<dynamic> get searchResults => _searchResults;
 
-  void searchBook(String bookName) async {
+  bool _termina = false;
+
+  bool get termina => _termina;
+
+  searchBook(String bookName) async {
+    notifyListeners();
     _searchResults = await bookRepository.apiRequest(bookName) as List;
+    notifyListeners();
+    _termina = true;
     notifyListeners();
   }
 }

@@ -19,15 +19,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: "/home_page",
       routes: {
-        "/home_page": (context) => HomePage(),
+        "/home_page": (context) =>
+            HomePage(txt: 'Ingresa palabra para buscar libro'),
         "/book_detail": (context) => BookDetail(
-          cover: '',
-          title: '',
-          description: '',
-          release: '',
-          pages: '',
-
-        )
+              cover: '',
+              title: '',
+              description: '',
+              release: '',
+              pages: '',
+            )
       },
     );
   }

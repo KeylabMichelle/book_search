@@ -28,8 +28,6 @@ class _BookDetailState extends State<BookDetail> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.indigo),
       home: Scaffold(
@@ -39,7 +37,9 @@ class _BookDetailState extends State<BookDetail> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => HomePage(
+                      txt: '',
+                    ),
                   ),
                 );
               },
@@ -47,9 +47,13 @@ class _BookDetailState extends State<BookDetail> {
             ),
             actions: [
               IconButton(onPressed: () {}, icon: Icon(Icons.public)),
-              IconButton(onPressed: () {
-                Share.share('Libro: <${widget.title}> con un número de páginas de ${widget.pages}', subject: 'Libro');
-              }, icon: Icon(Icons.share))
+              IconButton(
+                  onPressed: () {
+                    Share.share(
+                        'Libro: <${widget.title}> con un número de páginas de ${widget.pages}',
+                        subject: 'Detalles de libro');
+                  },
+                  icon: Icon(Icons.share))
             ],
           ),
           body: Padding(
@@ -62,7 +66,8 @@ class _BookDetailState extends State<BookDetail> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 10, bottom: 10),
                     child: widget.cover == ''
-                        ? Image.asset('assets/not_found.png',width: 200, height: 300, fit: BoxFit.cover)
+                        ? Image.asset('assets/not_found.png',
+                            width: 200, height: 300, fit: BoxFit.cover)
                         : Image.network('${widget.cover}',
                             width: 200, height: 300, fit: BoxFit.cover),
                   ),
@@ -71,30 +76,27 @@ class _BookDetailState extends State<BookDetail> {
                       padding: EdgeInsets.only(bottom: 20),
                       child: Text(
                         '${widget.title}',
-                        style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w300),
                       )),
                   Text(
                     'Date ${widget.release == 'null' ? 'No date' : widget.release}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text('Pages: ${widget.pages == 'null' ? 'Unknown' : widget.pages}'),
+                  Text(
+                      'Pages: ${widget.pages == 'null' ? 'Unknown' : widget.pages}'),
                   GestureDetector(
                     onTap: () {
-                     
                       setState(() {
-                         wrap = wrap == 5 ? 100 : 5;
+                        wrap = wrap == 5 ? 100 : 5;
                       });
-                      
                     },
-                    
                     child: Text(
                       '${widget.description == 'null' ? 'No description' : widget.description}',
                       maxLines: wrap,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-
-
                 ],
               ),
             ),
